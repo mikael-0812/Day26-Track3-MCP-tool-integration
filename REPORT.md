@@ -240,7 +240,29 @@ unknown table: missing_table
 
 ![Validation error](screenshots/08-validation-error.png)
 
-## 12. Đánh Giá Theo Rubric
+## 12. Kiểm Thử Bằng Codex Client
+
+Ngoài MCP Inspector, server cũng được kiểm thử bằng Codex client. Codex được cấu hình để sử dụng MCP server `sqlite_lab`, sau đó đọc resource `schema://database` để lấy thông tin schema.
+
+Prompt sử dụng:
+
+```text
+Use the sqlite_lab MCP server to read schema://database and tell me what tables exist.
+```
+
+Kết quả Codex trả về danh sách các bảng trong database:
+
+- `courses`
+- `enrollments`
+- `students`
+
+Điều này chứng minh MCP server có thể được sử dụng từ một MCP client thực tế, không chỉ từ MCP Inspector.
+
+**Ảnh kiểm thử bằng Codex client:**
+
+![Codex client test](screenshots/09-codex-client-test.png)
+
+## 13. Đánh Giá Theo Rubric
 
 | Tiêu chí | Kết quả |
 |---|---|
@@ -254,7 +276,8 @@ unknown table: missing_table
 | Validation và error handling | Đạt |
 | Test bằng MCP Inspector | Đạt |
 | Có client configuration/example | Đạt |
+| Kiểm thử bằng MCP client thực tế | Đạt |
 
-## 13. Kết Luận
+## 14. Kết Luận
 
 Lab đã hoàn thành việc xây dựng MCP server sử dụng FastMCP và SQLite. Server expose được 3 tools bắt buộc là `search`, `insert`, `aggregate`, đồng thời expose database schema thông qua MCP resources. Kết quả test trên MCP Inspector cho thấy server kết nối thành công, resources và tools discover được, các tool chạy đúng với input hợp lệ, và server trả lỗi rõ ràng với input không hợp lệ.
